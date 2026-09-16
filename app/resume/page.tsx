@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { RESUME_URL } from "@/utils/constants";
+import ResumeViewer from "@/Components/ResumeViewer";
 
 export const metadata: Metadata = {
   title: "Resume",
@@ -7,13 +7,7 @@ export const metadata: Metadata = {
 
 const page = (): React.ReactElement => {
   return (
-    <div className="h-screen">
-      <iframe
-        src={RESUME_URL}
-        title="Resume PDF"
-        className="w-full h-full border-none"
-      />
-    </div>
+    <ResumeViewer />
   );
 };
 

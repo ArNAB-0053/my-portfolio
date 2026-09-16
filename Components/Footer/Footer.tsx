@@ -23,6 +23,9 @@ interface SocialLink {
 const Footer = (): JSX.Element => {
   const pathname = usePathname();
   const isHomePage = pathname === "/";
+  const isResumePage = pathname === "/resume";
+
+  if (isResumePage) return <></>; // Render an empty div for spacing on the resume page
 
   const socialLinks: SocialLink[] = [
     {
