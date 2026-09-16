@@ -13,6 +13,14 @@ export const PROJECT_TABS: readonly ProjectTab[] = [
   "Extension",
 ] as const;
 
+export const PROJECT_TABS_SHORT_OBJECT: Record<ProjectTab, string> = {
+  All: "All",
+  "Web Application": "Web",
+  "Machine Learning": "ML",
+  "React Native": "RN",
+  Extension: "Ext",
+}
+
 export interface Project {
   id: string;
   project_heading: string;
