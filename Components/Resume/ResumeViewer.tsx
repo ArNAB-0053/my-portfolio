@@ -52,6 +52,16 @@ const ResumeViewer = ({ url }: ResumeViewerProps) => {
               width={pageWidth}
               renderTextLayer={false}
               // renderAnnotationLayer={false}
+              onRenderAnnotationLayerSuccess={() => {
+                const links = containerRef.current?.querySelectorAll<HTMLAnchorElement>(
+                  ".react-pdf__Page__annotations a"
+                )
+
+                links?.forEach((link) => {
+                  link.target = "_blank"
+                  link.rel = "noopener noreferrer"
+                })
+              }}
               className="[&>canvas]:!w-full [&>canvas]:!h-auto [&>canvas]:rounded-lg"
             />
           </div>

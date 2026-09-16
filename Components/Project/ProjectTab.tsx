@@ -1,15 +1,19 @@
 import type { ProjectTab as ProjectTabName } from "@/types";
-import Tabs from "../UI/Tabs";
+import Tabs, { Tab } from "../UI/Tabs";
 
-interface ProjectTabProps {
-  tabs: readonly ProjectTabName[];
-  activeTab: ProjectTabName;
-  setActiveTab: (tab: ProjectTabName) => void;
-  isMobile?: boolean;
+interface ProjectTabProps<T extends string> {
+  tabs: readonly Tab<T>[]
+  activeTab: T
+  setActiveTab: (tab: T) => void
 }
 
-const ProjectTab = ({ tabs, activeTab, setActiveTab }: ProjectTabProps): JSX.Element => (
-  <Tabs tabs={tabs} activeTab={activeTab} onChange={setActiveTab} layoutId="project-tab-indicator" />
+const ProjectTab = ({ tabs, activeTab, setActiveTab }: ProjectTabProps<ProjectTabName>): JSX.Element => (
+  <Tabs
+    tabs={tabs}
+    activeTab={activeTab}
+    onChange={setActiveTab}
+    layoutId="project-tab-indicator"
+  />
 )
 
 export default ProjectTab;

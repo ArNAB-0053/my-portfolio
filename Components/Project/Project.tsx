@@ -9,11 +9,19 @@ import ProjectTab from "./ProjectTab";
 import { useIsMobile } from "@/hooks/use-mobile";
 import SectionHeader from "../UI/SectionHeader";
 import { dm_sans } from "@/utils/fonts";
-import { PROJECT_TABS } from "@/types";
+import { PROJECT_TABS, PROJECT_TABS_SHORT_OBJECT } from "@/types";
 import type { Project, ProjectTab as ProjectTabName } from "@/types";
 import { useGetProjects } from "@/services/project.service";
 
-const tabs = PROJECT_TABS;
+const tabs = PROJECT_TABS.map((tab) => ({
+    key: tab,
+    value: tab,
+}));
+
+const mobileTabs = PROJECT_TABS.map((tab) => ({
+    key: tab,
+    value: PROJECT_TABS_SHORT_OBJECT[tab],
+}));
 
 const Project = (): JSX.Element => {
   const [activeTab, setActiveTab] = useState<ProjectTabName>("All");
@@ -46,7 +54,11 @@ const Project = (): JSX.Element => {
               </h4>
 
               {/* Tabs */}
-              <ProjectTab tabs={tabs} activeTab={activeTab} setActiveTab={setActiveTab} isMobile={isMobile} />
+              <ProjectTab
+                tabs={mobileTabs }
+                activeTab={activeTab}
+                setActiveTab={setActiveTab}
+              />
 
               {/* Project Slider with activeTab prop */}
               <div key={activeTab}>
@@ -81,7 +93,7 @@ const Project = (): JSX.Element => {
                   opacity: 1,
                   y: 0,
                 }}
-                className={`mb-8 font-[Montserrat] text-md text-center max-[768px]:text-sm max-[640px]:text-start font-light sm:max-[1024px]:text-xl overflow-hidden text-gray-300`}
+                className={`mb-8 font-[Montserrat] text-md text-center max-[768px]:text-sm max-[640px]:text-start font-light overflow-hidden text-gray-300`}
               >
                 My projects consist of a diverse range, including React Native, web, and machine learning projects. Some of them were developed for hackathons, where I worked alongside my teammates to turn ideas into reality.
                 Each project is built with care, passion, and love. Visit my
@@ -96,7 +108,7 @@ const Project = (): JSX.Element => {
               </motion.h4>
 
               {/* Tabs */}
-              <ProjectTab tabs={tabs} activeTab={activeTab} setActiveTab={setActiveTab} isMobile={isMobile} />
+              <ProjectTab tabs={tabs} activeTab={activeTab} setActiveTab={setActiveTab} />
 
               {/* Project Slider with activeTab prop */}
               <motion.div
