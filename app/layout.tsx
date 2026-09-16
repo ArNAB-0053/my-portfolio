@@ -28,7 +28,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="bg-black relative">
       <body
-        className={`${inter.className} selection:bg-white selection:text-black`}
+        className={`${inter.className} selection:bg-white selection:text-black min-h-screen`}
       >
         <ParticlesLayout>
           <NextTopLoader />

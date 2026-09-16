@@ -2,11 +2,12 @@
 
 import { useState } from "react"
 import { dm_sans } from "@/utils/fonts"
-import ResumeViewer from "./ResumeViewer"
 import ResumeTabs from "./ResumeTabs"
 import PageHeader from "../UI/PageHeader"
-import { resumeConfig, resumeTabs, type ResumeType } from "@/utils/resumeConfig"
+import { RESUME_TEXTS, resumeConfig, resumeTabs, type ResumeType } from "@/utils/resumeConfig"
 import { DownloadIcon, ExternalLinkIcon } from "../Icons"
+import { ResumeViewer } from "."
+import { downloadResume } from "@/services/resume.service"
 
 const ResumePage = () => {
   const [resumeType, setResumeType] = useState<ResumeType>("SDE")
@@ -27,29 +28,20 @@ const ResumePage = () => {
             {/* ─────────────────────────────────────────
                 LEFT — heading, description, note
             ───────────────────────────────────────── */}
-            <div className="flex-1 lg:self-start">
+            <div className="flex-1 md:sticky md:top-24 md:self-start">
               <span className="font-mono text-xs text-white/30">~/resume</span>
 
               <h1 className="mt-3 text-6xl font-semibold leading-[0.95] tracking-[-0.04em] text-white sm:text-7xl">
                 Resume
               </h1>
 
-              <p className="mt-6 max-w-md text-base leading-6 text-white/45 sm:text-lg">
-                I currently work full-stack, but my degree and personal projects sit
-                squarely in AI/ML — two resumes, one background.
+              <p className="mt-6 max-w-md text-base text-white/45 ">
+                {RESUME_TEXTS.DESCRIPTION}
               </p>
 
               <div className="mt-8 border-l-2 border-cyan-400/30 pl-5">
-                <p className="max-w-md text-sm leading-6 text-white/50">
-                  My day-to-day for the past year has been full-stack engineering —
-                  REST APIs, production UI, and data workflows in TypeScript, Node.js,
-                  and React/Next.js. But my degree was specifically in AI &amp; ML, and
-                  outside of work I&apos;ve built complete, evaluated ML projects: a
-                  legal-clause classifier trained on a labeled dataset, a RAG pipeline
-                  for querying PDFs, and a CNN for plant-disease detection. I&apos;m
-                  open to entry-level AI/ML roles, where my coursework and project
-                  depth apply directly, and SDE roles at the 1 YOE level, where my
-                  production experience speaks for itself.
+                <p className="max-w-md text-[13px] leading-5 md:text-sm lg:leading-6 text-white/50">
+                  {RESUME_TEXTS.MY_NOTE}
                 </p>
               </div>
             </div>
@@ -63,14 +55,13 @@ const ResumePage = () => {
                   <ResumeTabs tabs={resumeTabs} activeTab={resumeType} onChange={setResumeType} />
 
                   <div className="flex items-center gap-1">
-                    <a
-                      href={active.url}
-                      download={active.filename}
+                    <button
+                      onClick={downloadResume.bind(null, active)}
                       title="Download PDF"
                       className="rounded-md p-2 text-white/40 transition-colors hover:bg-white/[0.06] hover:text-white"
                     >
                       <DownloadIcon />
-                    </a>
+                    </button>
                     <a
                       href={active.url}
                       target="_blank"
