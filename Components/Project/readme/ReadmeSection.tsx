@@ -30,10 +30,8 @@ export default function ReadmeSection({ repo }: ReadmeSectionProps) {
   }
 
   return (
-    // relative + the flex row's natural height IS the boundary the sticky
-    // child respects — it can't stick past its own parent's bottom edge
     <div className="relative flex items-start justify-between gap-x-4">
-      <div className="flex-1 rounded-2xl lg:border lg:border-white/[0.08] lg:bg-gradient-to-t lg:from-cyan-800/5 lg:via-black/20 lg:to-black/10 lg:backdrop-blur-sm p-0 lg:px-12 lg:py-12">
+      <div className="flex-1 overflow-x-hidden rounded-2xl lg:border lg:border-white/[0.08] lg:bg-gradient-to-t lg:from-cyan-800/5 lg:via-black/20 lg:to-black/10 lg:backdrop-blur-sm p-0 lg:px-12 lg:py-12">
         <ProjectReadme content={readme} />
       </div>
 

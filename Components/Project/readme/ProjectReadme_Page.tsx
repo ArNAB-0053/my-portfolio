@@ -1,22 +1,19 @@
 "use client";
 
 import { dm_sans } from "@/utils/fonts";
-import { useRouter } from "next/navigation";
 import Image from "next/image";
-import Link from "next/link";
 import type { Project } from "@/types";
 import RelatedProjects from "../Related";
 import Header2 from "../../UI/Header2";
 import React from "react";
 import ReadmeSection from "./ReadmeSection";
+import PageHeader from "@/Components/UI/PageHeader";
 
 interface ProjectReadmePageProps {
   project: Project | null;
 }
 
 const ProjectReadmePage = ({ project }: ProjectReadmePageProps): React.ReactElement | null => {
-  const router = useRouter();
-
   if (!project) {
     return null;
   }
@@ -42,23 +39,13 @@ const ProjectReadmePage = ({ project }: ProjectReadmePageProps): React.ReactElem
         {/* ─────────────────────────────────────────────
             TOP BAR
         ───────────────────────────────────────────── */}
-        <div className="flex items-center justify-between border-b border-white/[0.06] py-6">
-          <button
-            onClick={() => router.back()}
-            className="group flex items-center gap-2 text-sm text-white/40 transition-colors hover:text-white"
-          >
-            <span className="text-base transition-transform duration-200 group-hover:-translate-x-1">
-              ←
-            </span>
-            Back
-          </button>
-
-          <div className="text-xs text-white/25 ">
-            <Link href="/" className="hover:text-white/45 transition-all duration-150">Home </Link>
-            / Projects /
-            <span className="text-white/45"> {projectName}</span>
-          </div>
-        </div>
+        <PageHeader
+          breadcrumbs={[
+            { label: "Home", href: "/" },
+            { label: "Projects" },
+            { label: projectName },
+          ]}
+        />
 
         {/* ─────────────────────────────────────────────
             HERO
@@ -192,7 +179,6 @@ const ProjectReadmePage = ({ project }: ProjectReadmePageProps): React.ReactElem
         {/* ─────────────────────────────────────────────
             README
         ───────────────────────────────────────────── */}
-
         <section
           id="readme"
           className="pb-10 pt-10 lg:mt-16 scroll-mt-6"

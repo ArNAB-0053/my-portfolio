@@ -6,13 +6,6 @@ import { dm_sans } from "@/utils/fonts";
 import Link from "next/link";
 import { FaGithub, FaLinkedin, FaFileAlt, FaEnvelope } from "react-icons/fa";
 
-type SkillPillColor = "teal" | "blue" | "neutral";
-
-interface SkillPill {
-  label: string;
-  color: SkillPillColor;
-}
-
 const Hero = (): React.ReactElement => {
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
@@ -46,25 +39,6 @@ const Hero = (): React.ReactElement => {
       transition: { type: "spring", stiffness: 70, damping: 18 },
     },
   };
-
-  const pillClass: Record<SkillPillColor, string> = {
-    teal: "bg-emerald-950/60 text-emerald-400 border border-emerald-800/50",
-    blue: "bg-sky-950/60 text-sky-400 border border-sky-800/50",
-    neutral: "bg-zinc-900/60 text-zinc-400 border border-zinc-800/60",
-  };
-
-  const skills: SkillPill[] = [
-    { label: "LangChain", color: "teal" },
-    { label: "RAG", color: "teal" },
-    { label: "Vector DBs", color: "teal" },
-    { label: "Docker", color: "blue" },
-    { label: "GitHub Actions", color: "blue" },
-    { label: "TypeScript", color: "neutral" },
-    { label: "Next.js", color: "neutral" },
-    { label: "Node.js", color: "neutral" },
-    { label: "Python", color: "neutral" },
-    { label: "SvelteKit", color: "neutral" },
-  ];
 
   return (
     <div
@@ -174,7 +148,6 @@ const Hero = (): React.ReactElement => {
           <Link
             type="button"
             href="/resume"
-            target="_blank"
             className="inline-flex items-center gap-2 px-5 py-2.5 bg-white text-zinc-900 text-sm font-semibold rounded-lg hover:bg-zinc-100 active:scale-[0.97] transition-all duration-200"
           >
             <FaFileAlt size={13} />
